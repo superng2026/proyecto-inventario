@@ -143,7 +143,6 @@ class InventarioApp extends BaseUploader {
         document.getElementById('tabInventario').addEventListener('click', () => this.switchTab('viewInventario'));
         document.getElementById('tabCambios').addEventListener('click', () => this.switchTab('viewCambios'));
 
-        // Listener para cerrar detalles y hacer scroll de vuelta a la tabla de cambios
         if (this.closeDetallesBtn) {
             this.closeDetallesBtn.addEventListener('click', () => {
                 const detalleContainer = document.getElementById('detallesProducto');
@@ -1021,7 +1020,6 @@ class InventarioApp extends BaseUploader {
         });
     }
 
-    // ⭐ SE AGREGA EL SCROLL HACIA EL PANEL DE DETALLES AL SELECCIONAR UN CAMBIO
     mostrarDetallesProducto(rowIndex) {
         const data = this.currentData[this.currentSheet];
         const headers = this.currentHeaders[this.currentSheet];
@@ -1048,7 +1046,6 @@ class InventarioApp extends BaseUploader {
         });
         contenedor.classList.add('visible');
 
-        // Desplazar suavemente hacia el recuadro de detalles
         setTimeout(() => {
             contenedor.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 100);

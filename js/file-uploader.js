@@ -1,6 +1,3 @@
-// ============================================
-// Clase base con utilidades compartidas
-// ============================================
 class BaseUploader {
     showNotification(message, type = 'success') {
         const existing = document.getElementById('barcodeNotification');

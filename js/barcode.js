@@ -13,28 +13,22 @@ class BarcodeReader {
         const input = document.getElementById('barcodeInput');
         const manualSearch = document.getElementById('manualSearch');
 
-        // 1. Captura tradicional (cuando el input oculto tiene el foco)
         input.addEventListener('keydown', (e) => {
             if (this.isManualSearchActive) return;
             this.handleKey(e);
         });
 
-        // 2. Captura GLOBAL (Para lectores Bluetooth que pierden el foco)
         document.addEventListener('keydown', (e) => {
             const active = document.activeElement;
 
-            // Si el usuario está escribiendo en el buscador o en la cantidad, no interferir
             if (active === manualSearch) return;
             if (active && active.classList && active.classList.contains('qty-input')) return;
 
-            // Si el evento ya se manejó en el input oculto, evitar duplicados
             if (e.target === input) return;
 
-            // Si la tecla es un carácter imprimible (letra o número) y viene rápido
             if (e.key.length === 1) {
                 this.handleKey(e);
             } else if (e.key === 'Enter') {
-                // Si se presiona Enter en la página, procesamos lo que haya en el buffer
                 if (this.buffer.length > 0) {
                     e.preventDefault();
                     this.processBuffer();
@@ -53,7 +47,6 @@ class BarcodeReader {
             });
         }
 
-        // 3. Guardián del foco (Para mantener el input oculto listo)
         document.addEventListener('click', () => {
             const active = document.activeElement;
             if (active === manualSearch) return;
@@ -69,7 +62,6 @@ class BarcodeReader {
                 this.processBuffer();
             }
         } else if (e.key.length === 1) {
-            // Evitar que el navegador haga scroll o active atajos con teclas sueltas
             if (document.activeElement !== document.getElementById('manualSearch')) {
                 e.preventDefault();
             }
@@ -84,7 +76,7 @@ class BarcodeReader {
                 } else {
                     this.buffer = '';
                 }
-            }, 300); // 300ms de tolerancia para Bluetooth
+            }, 300);
         }
     }
 

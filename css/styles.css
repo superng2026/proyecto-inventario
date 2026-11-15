@@ -107,7 +107,6 @@ main { padding: 2rem; background: #f8fafc; }
 .clear-input-btn:hover { color: #6b21a8; }
 .search-input-container input { padding-right: 35px !important; }
 
-/* ⭐ AJUSTES CRÍTICOS PARA EL SCROLL EN SUGERENCIAS MÓVILES CON TECLADO ACTIVO ⭐ */
 .search-suggestions {
     position: absolute; 
     top: 100%; left: 0; right: 0;
@@ -115,12 +114,10 @@ main { padding: 2rem; background: #f8fafc; }
     border-radius: 0 0 4px 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     z-index: 1000; 
     max-height: 250px; 
-    /* Forzamos el scroll interno */
     overflow-y: auto !important; 
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: contain; 
     display: none;
-    /* Aseguramos que el navegador entienda que aquí se puede arrastrar verticalmente */
     touch-action: pan-y !important; 
 }
 .search-suggestions.active { display: block; }

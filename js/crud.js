@@ -1,12 +1,8 @@
-// ============================================
-// Utilidades CRUD (editar, eliminar, agregar)
-// ============================================
 class CrudManager {
     constructor(uploader) {
         this.uploader = uploader;
     }
 
-    // Edición en la tabla principal
     makeEditable(td) {
         if (td.contentEditable === 'true') return;
 
@@ -44,7 +40,6 @@ class CrudManager {
             if (data && data[rowIndex]) {
                 data[rowIndex][cellIndex] = newValue;
                 
-                // REGISTRAR EL CAMBIO EN EL HISTORIAL
                 this.uploader.registrarCambio(rowIndex, cellIndex, oldValue, newValue);
                 
                 this.uploader.guardarEnLocalStorage();
@@ -68,7 +63,6 @@ class CrudManager {
         });
     }
 
-    // Eliminar fila
     eliminarFila(rowIndex) {
         const data = this.uploader.currentData[this.uploader.currentSheet];
         if (!data || !data[rowIndex]) return;
@@ -81,7 +75,6 @@ class CrudManager {
         this.uploader.showNotification('Fila eliminada', 'success');
     }
 
-    // Agregar fila
     agregarFila() {
         const data = this.uploader.currentData[this.uploader.currentSheet];
         const headers = this.uploader.currentHeaders[this.uploader.currentSheet];
